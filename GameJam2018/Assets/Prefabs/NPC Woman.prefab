@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   panicSpeed: 150
+  panic: 0
 --- !u!212 &212372182442896104
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -181,7 +182,7 @@ SpriteRenderer:
   m_SortingLayerID: 300823257
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 677412e59e795ce40aea209c499f77ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86c664a8f8eed814abe3a10aa9fd0f9e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
