@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 58827694095404076}
   m_Layer: 0
   m_Name: ClickRadius
-  m_TagString: Untagged
+  m_TagString: Panic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

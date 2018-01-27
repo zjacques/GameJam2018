@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Zachary.unity
+    guid: 11283552aa8b2b647b997810ccc9b128
+  - enabled: 1
+    path: Assets/Scenes/Scene2.unity
+    guid: 4ee86c777b28b22408661d5fde6eb463
