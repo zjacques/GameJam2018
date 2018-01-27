@@ -7,6 +7,7 @@ TagManager:
   - NPC
   - Panic
   - Text
+  - SpawnArray
   layers:
   - Default
   - TransparentFX
