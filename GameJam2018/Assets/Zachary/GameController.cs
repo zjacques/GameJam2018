@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour {
                 hasClicked = true;
             }
 
-            if (time >= 60f)
+            if (time >= 10f)
             {
                 if (transition == false)
                 {
@@ -95,7 +95,7 @@ public class GameController : MonoBehaviour {
     void RunTimer()
     {
         time += Time.deltaTime;
-        timer.text = Mathf.Round(60f - time).ToString();
+        timer.text = Mathf.Round(10f - time).ToString();
     }
 
     public void Escape()

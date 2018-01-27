@@ -20,6 +20,7 @@ public class BoundaryDetector : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D otherCollider)
 	{
+        Debug.Log("test");
 		GameObject other = otherCollider.gameObject;
 		if(other.gameObject.CompareTag("NPC"))
 		{

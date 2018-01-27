@@ -11,9 +11,12 @@ public class ExitDoor : MonoBehaviour {
         game = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
-    void OnTriggerEnter(Collider coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
-        if(coll.CompareTag("NPC"))
+        Debug.Log("COLLIDED");
+        Debug.Log("GOD");
+        Debug.Log("DAMN");
+        if (coll.gameObject.CompareTag("NPC"))
         {
             if(coll.gameObject.GetComponent<Mover>().panic)
             {
