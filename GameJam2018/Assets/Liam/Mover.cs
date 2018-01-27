@@ -62,6 +62,7 @@ public class Mover : MonoBehaviour {
 				rb2d.AddForce(vecBetween);
 				panic = true;
 				transform.GetChild (0).gameObject.SetActive (true);
+				GetComponent<SpriteRenderer>().color = Color.red;
 			}
 		}
 			
