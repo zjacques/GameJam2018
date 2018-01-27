@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Liam.unity
+- path: Assets/Scenes/Zachary.unity
   isLoaded: 1
   isActive: 1

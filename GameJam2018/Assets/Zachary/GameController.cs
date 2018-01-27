@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour {
     public AudioClip crowd;
     public AudioClip explosion;
     public GameObject[] spawnBlocks; //Each block needs to be 3 wide and 3 tall for more or less even distribution
-    GameObject[] spawnPoints;
+    public GameObject[] spawnPoints;
 
 
     bool inGame;
@@ -63,27 +63,34 @@ public class GameController : MonoBehaviour {
             switch(Random.Range(0, 10))
             {
                 case 0:
-                    //Instantiate(spawnBlocks[0], point.transform.position, point.transform.rotation);
+                    Instantiate(spawnBlocks[0], point.transform.position, point.transform.rotation);
                     break;
                 case 1:
+                    Instantiate(spawnBlocks[1], point.transform.position, point.transform.rotation);
                     break;
                 case 2:
+                    Instantiate(spawnBlocks[2], point.transform.position, point.transform.rotation);
                     break;
                 case 3:
+                    Instantiate(spawnBlocks[3], point.transform.position, point.transform.rotation);
                     break;
                 case 4:
+                    Instantiate(spawnBlocks[4], point.transform.position, point.transform.rotation);
                     break;
                 case 5:
+                    Instantiate(spawnBlocks[5], point.transform.position, point.transform.rotation);
                     break;
                 case 6:
+                    Instantiate(spawnBlocks[6], point.transform.position, point.transform.rotation);
                     break;
                 case 7:
+                    Instantiate(spawnBlocks[7], point.transform.position, point.transform.rotation);
                     break;
                 case 8:
-                    break;
-                case 9:
+                    Instantiate(spawnBlocks[8], point.transform.position, point.transform.rotation);
                     break;
                 default:
+                    Instantiate(spawnBlocks[0], point.transform.position, point.transform.rotation);
                     break;
             };
                     

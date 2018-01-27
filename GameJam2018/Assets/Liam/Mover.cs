@@ -9,6 +9,7 @@ public class Mover : MonoBehaviour {
 
 	private Vector2 velocity;
 	private Rigidbody2D rb2d;
+    private AudioSource scream;
 	private System.Random randNum = new System.Random();
 
 	private float angle;
@@ -17,7 +18,7 @@ public class Mover : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        scream = GetComponent<AudioSource>();
 		transform.GetChild (0).gameObject.SetActive (false);
 
 		angle = Random.Range (0, Mathf.PI * 2);
@@ -51,7 +52,8 @@ public class Mover : MonoBehaviour {
 
 			if (other.gameObject.CompareTag ("Panic")) 
 			{
-				Vector2 otherPos = otherCollider.gameObject.transform.position;
+                scream.Play();
+                Vector2 otherPos = otherCollider.gameObject.transform.position;
 				Vector2 vecBetween = new Vector2 (transform.position.x - otherPos.x, transform.position.y - otherPos.y); //transform.position - otherPos;
 				vecBetween.Normalize();
 
