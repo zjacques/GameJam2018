@@ -5,19 +5,27 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
-    
+
+    public GameObject Canvas;
     public GameObject shout;
     public Image black;
     public Animator anim;
-    bool transition = false;
+    public Text scoreDisplay;
+    public Text requiredPeople;
+    public Text timer;
 
+    bool inGame;
+    bool transition = false;
     public int score = 0;
-    public int level = 1;
+    public int level = 0;
+    float time;
 
     public int peopleSaved = 0;
 
     public bool hasClicked = false;
     GameObject[] NPCs;
+
+    bool success = false;
 
     // Use this for initialization
     void Awake () {
@@ -26,50 +34,107 @@ public class GameController : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        InitLevel();
+    }
+
+    void InitLevel()
+    {
         NPCs = GameObject.FindGameObjectsWithTag("NPC"); //Get all the characters on screen
+        inGame = true;
+        hasClicked = false;
+        transition = false;
+        level++;
+        peopleSaved = 0;
+        requiredPeople.text = Mathf.Clamp((level - peopleSaved),0, 30).ToString(); //Change the 30 upper bound if we need more....
+        time = 0;
+        Debug.Log(level);
+        //requiredPeople.text = ((level - peopleSaved) < 0 ? 0 : (level - peopleSaved)).ToString(); Because I could
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && hasClicked == false)
+        if(inGame)
         {
-            Debug.Log("Left Click");
-
-            Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pz.z = 0;
-            Debug.Log(pz);
-            Instantiate(shout, pz, Quaternion.identity);
-            hasClicked = true;
-        }
-
-        if(hasClicked)
-        {
-            //bool finished = true;
-            foreach (GameObject npc in NPCs)
+            if (Input.GetMouseButtonDown(0) && hasClicked == false)
             {
-                //Check all the objects to see when everything has stopped moving
-                /*if (npc.GetComponent("Mover").moving)
-                    finished = false;*/
-                
+                Debug.Log("Left Click");
+
+                Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                pz.z = 0;
+                Debug.Log(pz);
+                Instantiate(shout, pz, Quaternion.identity);
+                hasClicked = true;
             }
-            if (transition == false)
+
+            if (hasClicked)
             {
-                StartCoroutine(Fading());
-                transition = true;
+                //bool finished = true;
+                foreach (GameObject npc in NPCs)
+                {
+                    //Check all the objects to see when everything has stopped moving
+                    /*if (npc.GetComponent("Mover").moving)
+                        finished = false;*/
+
+                }
+                if (transition == false)
+                {
+                    StartCoroutine(Fading(success));
+                    transition = true;
+                }
             }
+
+            RunTimer();
         }
+        
     }
 
-    IEnumerator Fading()
+    void RunTimer()
     {
+        time += Time.deltaTime;
+        timer.text = Mathf.Round(60f - time).ToString();
+    }
+
+    public void Escape()
+    {
+        peopleSaved++;
+        score++;
+        scoreDisplay.text = score.ToString();
+    }
+
+    public void Restart()
+    {
+
+    }
+
+    void endGame()
+    {
+        Text endText = GameObject.Find("SavedText").GetComponent<Text>();
+        endText.text = ("You saved\n" + score.ToString() + "\npeople!");
+        anim = GameObject.Find("BlackScreen").GetComponent<Animator>();
+
+    }
+
+    IEnumerator Fading(bool succeeded)
+    {
+        succeeded = false; //FIX
         yield return new WaitForSeconds(1f);
         anim.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
-        SceneManager.LoadSceneAsync("Scene2");
+        if(succeeded)
+        {
+            SceneManager.LoadSceneAsync("Scene2");
+            InitLevel();
+        }
+        else
+        {
+            Destroy(Canvas);
+            inGame = false;
+            SceneManager.LoadSceneAsync("Fail");
+            yield return new WaitForSecondsRealtime(0.05f);
+            endGame();
+        }
         anim.SetBool("Fade", false);
-        hasClicked = false;
-        transition = false;
         yield return null;
     }
 }
