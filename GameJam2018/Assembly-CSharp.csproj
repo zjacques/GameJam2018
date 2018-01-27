@@ -53,6 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\Liam\BoundaryDetector.cs" />
      <Compile Include="Assets\Liam\Mover.cs" />
+     <Compile Include="Assets\PanicRadiusController.cs" />
      <Compile Include="Assets\Zachary\ClickShout.cs" />
      <Compile Include="Assets\Zachary\ExitDoor.cs" />
      <Compile Include="Assets\Zachary\GameController.cs" />
