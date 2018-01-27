@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour {
     public Text timer;
     public AudioClip crowd;
     public AudioClip explosion;
+    public GameObject[] spawnBlocks; //Each block needs to be 3 wide and 3 tall for more or less even distribution
+    GameObject[] spawnPoints;
 
 
     bool inGame;
@@ -26,7 +28,6 @@ public class GameController : MonoBehaviour {
     public int peopleSaved = 0;
 
     public bool hasClicked = false;
-    GameObject[] NPCs;
     AudioSource gameNoise;
 
     bool success;
@@ -44,7 +45,6 @@ public class GameController : MonoBehaviour {
     void InitLevel()
     {
         success = false;
-        NPCs = GameObject.FindGameObjectsWithTag("NPC"); //Get all the characters on screen
         inGame = true;
         hasClicked = false;
         transition = false;
@@ -52,11 +52,43 @@ public class GameController : MonoBehaviour {
         peopleSaved = 0;
         requiredPeople.text = Mathf.Clamp((level - peopleSaved),0, 99).ToString(); //Change the 30 upper bound if we need more....
         time = 0;
-        Debug.Log(level);
         gameNoise = GetComponent<AudioSource>();
         gameNoise.clip = crowd;
         gameNoise.loop = true;
         gameNoise.Play();
+
+        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        foreach(GameObject point in spawnPoints)
+        {
+            switch(Random.Range(0, 10))
+            {
+                case 0:
+                    //Instantiate(spawnBlocks[0], point.transform.position, point.transform.rotation);
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+                case 9:
+                    break;
+                default:
+                    break;
+            };
+                    
+        }
+
         //requiredPeople.text = ((level - peopleSaved) < 0 ? 0 : (level - peopleSaved)).ToString(); Because I could
     }
 
