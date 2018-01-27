@@ -6,12 +6,21 @@ public class ExitDoor : MonoBehaviour {
 
     public GameController game;
 
+    void Awake()
+    {
+        game = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+    }
+
     void OnTriggerEnter(Collider coll)
     {
         if(coll.CompareTag("NPC"))
         {
-            Destroy(coll.gameObject);
-            game.Escape();
+            if(coll.gameObject.GetComponent<Mover>().panicked)
+            {
+                Destroy(coll.gameObject);
+                game.Escape();
+            }
+
         }
     }
 }
