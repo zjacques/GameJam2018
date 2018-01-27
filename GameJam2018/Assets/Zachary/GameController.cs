@@ -102,11 +102,6 @@ public class GameController : MonoBehaviour {
         scoreDisplay.text = score.ToString();
     }
 
-    public void Restart()
-    {
-
-    }
-
     void endGame()
     {
         Text endText = GameObject.Find("SavedText").GetComponent<Text>();

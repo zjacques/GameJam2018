@@ -51,12 +51,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ExitDoor.cs" />
      <Compile Include="Assets\Liam\BoundaryDetector.cs" />
      <Compile Include="Assets\Liam\Mover.cs" />
-     <Compile Include="Assets\RestartButton.cs" />
      <Compile Include="Assets\Zachary\ClickShout.cs" />
+     <Compile Include="Assets\Zachary\ExitDoor.cs" />
      <Compile Include="Assets\Zachary\GameController.cs" />
+     <Compile Include="Assets\Zachary\RestartButton.cs" />
      <Compile Include="Assets\Zachary\SaveBetweenScenes.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
