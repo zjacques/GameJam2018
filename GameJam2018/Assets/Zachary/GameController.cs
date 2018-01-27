@@ -13,6 +13,9 @@ public class GameController : MonoBehaviour {
     public Text scoreDisplay;
     public Text requiredPeople;
     public Text timer;
+    public AudioClip crowd;
+    public AudioClip explosion;
+
 
     bool inGame;
     bool transition = false;
@@ -24,6 +27,7 @@ public class GameController : MonoBehaviour {
 
     public bool hasClicked = false;
     GameObject[] NPCs;
+    AudioSource gameNoise;
 
     bool success = false;
 
@@ -45,9 +49,11 @@ public class GameController : MonoBehaviour {
         transition = false;
         level++;
         peopleSaved = 0;
-        requiredPeople.text = Mathf.Clamp((level - peopleSaved),0, 30).ToString(); //Change the 30 upper bound if we need more....
+        requiredPeople.text = Mathf.Clamp((level - peopleSaved),0, 99).ToString(); //Change the 30 upper bound if we need more....
         time = 0;
         Debug.Log(level);
+        gameNoise.clip = crowd;
+        gameNoise.Play();
         //requiredPeople.text = ((level - peopleSaved) < 0 ? 0 : (level - peopleSaved)).ToString(); Because I could
     }
 
@@ -67,18 +73,14 @@ public class GameController : MonoBehaviour {
                 hasClicked = true;
             }
 
-            if (hasClicked)
+            if (time >= 60f)
             {
-                //bool finished = true;
-                foreach (GameObject npc in NPCs)
-                {
-                    //Check all the objects to see when everything has stopped moving
-                    /*if (npc.GetComponent("Mover").moving)
-                        finished = false;*/
-
-                }
                 if (transition == false)
                 {
+                    if(peopleSaved >= level)
+                    {
+                        success = true;
+                    }
                     StartCoroutine(Fading(success));
                     transition = true;
                 }
@@ -100,6 +102,7 @@ public class GameController : MonoBehaviour {
         peopleSaved++;
         score++;
         scoreDisplay.text = score.ToString();
+        requiredPeople.text = Mathf.Clamp((level - peopleSaved), 0, 99).ToString();
     }
 
     void endGame()
@@ -112,7 +115,6 @@ public class GameController : MonoBehaviour {
 
     IEnumerator Fading(bool succeeded)
     {
-        succeeded = false; //FIX
         yield return new WaitForSeconds(1f);
         anim.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
