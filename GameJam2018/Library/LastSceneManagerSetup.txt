@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Fail.unity
+=======
+- path: Assets/Scenes/Liam.unity
+>>>>>>> 341d9e539a15e40d662be8a7be757c63b49a89c0
   isLoaded: 1
   isActive: 1

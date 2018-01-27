@@ -12,14 +12,15 @@ public class BoundaryDetector : MonoBehaviour {
 		m_collider = GetComponent<Collider2D> ();
 		spriteSize = GetComponent<SpriteRenderer>().bounds.size;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
 	void OnTriggerEnter2D(Collider2D otherCollider)
 	{
+		Debug.Log ("Enter");
 		GameObject other = otherCollider.gameObject;
 		double xMax = spriteSize.x / 2.0; // Half as bounds.size.x is the entire width of the collider
 		double xMin = -spriteSize.x / 2.0;
@@ -29,13 +30,28 @@ public class BoundaryDetector : MonoBehaviour {
 		double otherWidth = otherCollider.bounds.size.x / 2.0;
 		double otherHeight = otherCollider.bounds.size.y / 2.0;
 
-		if(other.GetComponent<Transform>().position.x + otherWidth> xMax || other.GetComponent<Transform>().position.x - otherWidth < xMin)
+		Debug.Log (yMin);
+		Debug.Log (other.GetComponent<Transform> ().position.y - otherHeight);
+
+		if(other.GetComponent<Transform>().position.x + otherWidth >= xMax && rb.velocity.x > 0)
 		{
 			rb.velocity = new Vector2(-rb.velocity.x, rb.velocity.y);
+			Debug.Log ("Right");
 		}
-		if(other.GetComponent<Transform>().position.y - otherHeight < yMin || other.GetComponent<Transform>().position.y + otherHeight > yMax)
+		if(other.GetComponent<Transform>().position.x - otherWidth <= xMin && rb.velocity.x < 0)
+		{
+			rb.velocity = new Vector2(-rb.velocity.x, rb.velocity.y);
+			Debug.Log("Left");
+		}
+		if(other.GetComponent<Transform>().position.y - otherHeight <= yMin && rb.velocity.y < 0)
 		{
 			rb.velocity = new Vector2(rb.velocity.x, -rb.velocity.y);
+			Debug.Log ("Bottom");
+		}
+		if(other.GetComponent<Transform>().position.y + otherHeight >= yMax && rb.velocity.y > 0)
+		{
+			rb.velocity = new Vector2(rb.velocity.x, -rb.velocity.y);
+			Debug.Log ("Top");
 		}
 	}
 }
