@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour {
     GameObject[] NPCs;
     AudioSource gameNoise;
 
-    bool success = false;
+    bool success;
 
     // Use this for initialization
     void Awake () {
@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour {
 
     void InitLevel()
     {
+        success = false;
         NPCs = GameObject.FindGameObjectsWithTag("NPC"); //Get all the characters on screen
         inGame = true;
         hasClicked = false;
@@ -54,6 +55,7 @@ public class GameController : MonoBehaviour {
         Debug.Log(level);
         gameNoise = GetComponent<AudioSource>();
         gameNoise.clip = crowd;
+        gameNoise.loop = true;
         gameNoise.Play();
         //requiredPeople.text = ((level - peopleSaved) < 0 ? 0 : (level - peopleSaved)).ToString(); Because I could
     }
@@ -76,6 +78,9 @@ public class GameController : MonoBehaviour {
 
             if (time >= 10f)
             {
+                gameNoise.clip = explosion;
+                gameNoise.loop = false;
+                gameNoise.Play();
                 if (transition == false)
                 {
                     if(peopleSaved >= level)
@@ -84,6 +89,7 @@ public class GameController : MonoBehaviour {
                     }
                     StartCoroutine(Fading(success));
                     transition = true;
+                    inGame = false;
                 }
             }
 
@@ -95,7 +101,7 @@ public class GameController : MonoBehaviour {
     void RunTimer()
     {
         time += Time.deltaTime;
-        timer.text = Mathf.Round(10f - time).ToString();
+        timer.text = Mathf.Clamp(Mathf.Round(10f - time), 0f, 60f).ToString();
     }
 
     public void Escape()
@@ -109,14 +115,17 @@ public class GameController : MonoBehaviour {
     void endGame()
     {
         Text endText = GameObject.Find("SavedText").GetComponent<Text>();
-        endText.text = ("You saved\n" + score.ToString() + "\npeople!");
+        if(score == 1)
+            endText.text = ("You saved\n" + score.ToString() + "\nperson!");
+        else
+            endText.text = ("You saved\n" + score.ToString() + "\npeople!");
         anim = GameObject.Find("BlackScreen").GetComponent<Animator>();
 
     }
 
     IEnumerator Fading(bool succeeded)
     {
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
         anim.SetBool("Fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
         if(succeeded)
@@ -127,7 +136,6 @@ public class GameController : MonoBehaviour {
         else
         {
             Destroy(Canvas);
-            inGame = false;
             SceneManager.LoadSceneAsync("Fail");
             yield return new WaitForSecondsRealtime(0.05f);
             endGame();

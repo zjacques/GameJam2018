@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class RestartButton : MonoBehaviour {
 
-    GameController GC;
+    GameObject GC;
     public void NextLevelButton()
     {
-        GC = GameObject.Find("GameController").GetComponent<GameController>();
+        GC = GameObject.Find("GameController");
         Destroy(GC);
         SceneManager.LoadSceneAsync("Zachary");
 
