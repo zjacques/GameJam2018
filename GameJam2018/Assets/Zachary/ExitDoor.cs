@@ -15,7 +15,7 @@ public class ExitDoor : MonoBehaviour {
     {
         if(coll.CompareTag("NPC"))
         {
-            if(coll.gameObject.GetComponent<Mover>().panicked)
+            if(coll.gameObject.GetComponent<Mover>().panic)
             {
                 Destroy(coll.gameObject);
                 game.Escape();

@@ -13,7 +13,7 @@ public class Mover : MonoBehaviour {
 
 	private float angle;
 
-	bool panic = false;
+	public bool panic = false;
 
 	// Use this for initialization
 	void Start () {

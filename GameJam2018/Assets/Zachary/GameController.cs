@@ -52,6 +52,7 @@ public class GameController : MonoBehaviour {
         requiredPeople.text = Mathf.Clamp((level - peopleSaved),0, 99).ToString(); //Change the 30 upper bound if we need more....
         time = 0;
         Debug.Log(level);
+        gameNoise = GetComponent<AudioSource>();
         gameNoise.clip = crowd;
         gameNoise.Play();
         //requiredPeople.text = ((level - peopleSaved) < 0 ? 0 : (level - peopleSaved)).ToString(); Because I could
