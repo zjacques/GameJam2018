@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ClickShout : MonoBehaviour {
-
+    public float scale;
 	// Use this for initialization
 	void Start () {
         StartCoroutine("GrowShrink");
@@ -13,7 +13,7 @@ public class ClickShout : MonoBehaviour {
     IEnumerator GrowShrink()
     {
         Vector3 startingScale = transform.localScale;
-        Vector3 expandedScale = new Vector3(1, 1, 1);
+        Vector3 expandedScale = new Vector3(scale, scale, 1);
         float time = 1;
         float timeSoFar = 0;
 
