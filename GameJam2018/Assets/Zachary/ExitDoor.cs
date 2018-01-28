@@ -11,7 +11,7 @@ public class ExitDoor : MonoBehaviour {
         game = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
-    void OnTriggerEnter2D(Collider2D coll)
+    void OnTriggerStay2D(Collider2D coll)
     {
         Debug.Log("COLLIDED");
         Debug.Log("GOD");

@@ -56,8 +56,19 @@ public class GameController : MonoBehaviour {
         gameNoise.clip = crowd;
         gameNoise.loop = true;
         gameNoise.Play();
+        bool loaded = false;
+        while (spawnPoints.Length < 6 && loaded == false)
+        {
+            loaded = true;
+            spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        }
+        while (spawnPoints[0] == null && loaded  == false)
+        {
+            loaded = true;
+            spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
-        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        }
+        
         foreach(GameObject point in spawnPoints)
         {
             switch(Random.Range(0, 10))
@@ -154,11 +165,26 @@ public class GameController : MonoBehaviour {
     void endGame()
     {
         Text endText = GameObject.Find("SavedText").GetComponent<Text>();
+        while (endText == null || GameObject.Find("SavedText") == null)
+        {
+            endText = GameObject.Find("SavedText").GetComponent<Text>();
+
+            /*gameNoise.clip = crowd;
+            gameNoise.loop = true;
+            gameNoise.Play();*/
+        }
+        if(endText == null)
+        {
+            endText = GameObject.Find("SavedText").GetComponent<Text>();
+        }
         if(score == 1)
             endText.text = ("You saved\n" + score.ToString() + "\nperson!");
         else
             endText.text = ("You saved\n" + score.ToString() + "\npeople!");
-        anim = GameObject.Find("BlackScreen").GetComponent<Animator>();
+        while (anim==null)
+        {
+            anim = GameObject.Find("BlackScreen").GetComponent<Animator>();
+        }
 
     }
 
@@ -170,14 +196,14 @@ public class GameController : MonoBehaviour {
         if(succeeded)
         {
             SceneManager.LoadSceneAsync("Scene2");
-            yield return new WaitForSecondsRealtime(0.05f);
+            yield return new WaitForSecondsRealtime(0.1f);
             InitLevel();
         }
         else
         {
             Destroy(Canvas);
             SceneManager.LoadSceneAsync("Fail");
-            yield return new WaitForSecondsRealtime(0.05f);
+            yield return new WaitForSecondsRealtime(0.1f);
             endGame();
         }
         anim.SetBool("Fade", false);

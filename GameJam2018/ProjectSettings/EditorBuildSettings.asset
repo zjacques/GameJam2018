@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Front.unity
+    guid: 67a7d645cae118e4ebcb582b76e658bf
+  - enabled: 1
+    path: Assets/Scenes/Fail.unity
+    guid: caa1195c77660df4fa97a311562058cc
+  - enabled: 1
     path: Assets/Scenes/Zachary.unity
     guid: 11283552aa8b2b647b997810ccc9b128
   - enabled: 1
     path: Assets/Scenes/Scene2.unity
     guid: 4ee86c777b28b22408661d5fde6eb463
-  - enabled: 1
-    path: Assets/Scenes/Fail.unity
-    guid: 67a7d645cae118e4ebcb582b76e658bf
