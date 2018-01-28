@@ -170,6 +170,7 @@ public class GameController : MonoBehaviour {
         if(succeeded)
         {
             SceneManager.LoadSceneAsync("Scene2");
+            yield return new WaitForSecondsRealtime(0.05f);
             InitLevel();
         }
         else

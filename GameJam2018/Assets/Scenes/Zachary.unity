@@ -184,13 +184,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.491
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 210
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -300,6 +300,16 @@ Prefab:
     - target: {fileID: 1528411059766108, guid: 76d8e32aa677fb545b6a9fe3afe42c2d, type: 2}
       propertyPath: m_Name
       value: Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 61873997089624116, guid: 76d8e32aa677fb545b6a9fe3afe42c2d,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 3.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 61873997089624116, guid: 76d8e32aa677fb545b6a9fe3afe42c2d,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 2.64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76d8e32aa677fb545b6a9fe3afe42c2d, type: 2}
