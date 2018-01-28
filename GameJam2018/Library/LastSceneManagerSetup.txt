@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Zachary.unity
+=======
+- path: Assets/Scenes/Liam.unity
+>>>>>>> ec8d5bc685026e03c3d528db9a5d289c7e80f602
   isLoaded: 1
   isActive: 1
